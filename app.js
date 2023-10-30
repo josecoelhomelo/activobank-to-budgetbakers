@@ -35,7 +35,7 @@ let transactions = XLSX.utils.sheet_to_json(worksheet, {
     .map(record => {
         const date = new Date(Date.UTC(0, 0, record.launch_date - 1));
         return {
-            date: `${date.getFullYear()}-${(`0` + parseInt(date.getMonth()+1)).slice(-2)}-${(`0` + date.getDate()).slice(-2)}T00:00:00.000+0000`,
+            date: `${(`0` + parseInt(date.getMonth()+1)).slice(-2)}-${(`0` + date.getDate()).slice(-2)}-${date.getFullYear()}`,
             note: record.description,
             amount: record.value >= 0 ? record.value : 0,
             expense: record.value < 0 ? record.value : 0
