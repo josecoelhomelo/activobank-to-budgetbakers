@@ -32,6 +32,7 @@ let transactions = XLSX.utils.sheet_to_json(worksheet, {
     header : ['launch_date', 'value_date', 'description', 'value', 'balance']
 })
     .slice(6)
+    .reverse()
     .map(record => {
         const date = new Date(Date.UTC(0, 0, record.launch_date - 1));
         return {
