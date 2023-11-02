@@ -1,4 +1,4 @@
-This app converts your transactions XLSX file from ActivoBank and imports it to BudgetBaker's Wallet using module [wallet-budgetbakers-import](https://github.com/josecoelhomelo/wallet-budgetbakers-import).
+This app converts your transactions' XLSX file from ActivoBank and imports it to BudgetBaker's Wallet using module [wallet-budgetbakers-import](https://github.com/josecoelhomelo/wallet-budgetbakers-import).
 
 # Usage
 
@@ -10,3 +10,5 @@ PASSWORD =
 IMPORT_EMAIL =
 ACCOUNT_ID = 
 ```
+
+Only new/unexisting records will be considered. However, because ActivoBank doesn't track time, make sure you run the app at the end of the day and/or without expecting any new transactions for that day.
