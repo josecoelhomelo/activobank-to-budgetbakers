@@ -4,6 +4,12 @@ import path from 'path';
 import ObjectsToCsv from 'objects-to-csv';
 import XLSX from 'xlsx';
 import wallet from 'wallet-budgetbakers-import';
+const walletAuth = {
+    user: process.env.USER,
+    password: process.env.PASSWORD
+}
+const walletConfig = {    
+    email: process.env.IMPORT_EMAIL,
     accountId: process.env.ACCOUNT_ID
 }
 const importFolder = 'activobank';
@@ -42,10 +48,15 @@ const date = new Date();
 const timestamp = `${date.getFullYear()}-${(`0` + parseInt(date.getMonth()+1)).slice(-2)}-${(`0` + date.getDate()).slice(-2)}T${(`0` + date.getHours()).slice(-2)}-${(`0` + date.getMinutes()).slice(-2)}`;
 const file = `${exportFolder}/${timestamp}.csv`;        
 const csv = new ObjectsToCsv(transactions); 
-
-(async () => {
+try {
     await csv.toDisk(file);
-    wallet.uploadFile(walletInfo.username, walletInfo.password, file, walletInfo.importEmail, walletInfo.accountId)
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
-})();
+    await wallet.login(walletAuth.user, walletAuth.password);
+    const result = await wallet.importFile({
+        file: file,
+        email: walletConfig.email,
+        accountId: walletConfig.accountId
+    });
+    console.log(result);
+} catch(err) {
+    console.error(err);
+}
