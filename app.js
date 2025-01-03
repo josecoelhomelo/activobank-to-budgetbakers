@@ -9,9 +9,8 @@ import wallet from 'wallet-budgetbakers-import';
 const importFolder = 'activobank';
 const exportFolder = 'transactions';
 if (!fs.existsSync(importFolder) || !fs.readdirSync(importFolder).length) {
-    return console.log(`Missing folder ${importFolder} or no files found`);
+    throw Error(`Missing folder ${importFolder} or no files found`);
 }
-
 const importFile = fs.readdirSync(importFolder)
     .filter(file => fs.lstatSync(path.join(importFolder, file)).isFile())
     .sort((a, b) => {
