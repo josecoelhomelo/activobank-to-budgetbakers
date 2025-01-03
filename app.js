@@ -1,13 +1,9 @@
-require('dotenv').config();
-const fs = require('node:fs');
-const path = require("node:path");
-const ObjectsToCsv = require('objects-to-csv');
-const XLSX = require('xlsx');
-const wallet = require('wallet-budgetbakers-import');
-const walletInfo = {
-    username: process.env.USER,
-    password: process.env.PASSWORD,
-    importEmail: process.env.IMPORT_EMAIL,
+import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
+import ObjectsToCsv from 'objects-to-csv';
+import XLSX from 'xlsx';
+import wallet from 'wallet-budgetbakers-import';
     accountId: process.env.ACCOUNT_ID
 }
 const importFolder = 'activobank';
