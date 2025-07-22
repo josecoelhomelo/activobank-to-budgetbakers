@@ -1,5 +1,5 @@
-activobank
-node_modules
-transactions
+/activobank
+/node_modules
+/transactions
 .env
 package-lock.json
